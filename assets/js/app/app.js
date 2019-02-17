@@ -7,7 +7,22 @@ class Layout extends Component {
   constructor () {
     super()
     this.state = {
-      name: 'Joe'
+      name: 'Joe',
+      location: 'home'
+    }
+    this.routingSystem = this.routingSystem.bind(this);
+  }
+
+  routingSystem() {
+    switch(this.state.location) {
+      case 'home':
+        return <Home />
+        break;
+      case 'results':
+        return <Results />
+        break;
+      default:
+        return <Home /> 
     }
   }
 
@@ -21,10 +36,10 @@ class Layout extends Component {
             </div>
             
             <nav className="menu">
-              <a href="#">Register</a>
+              <a href="#" className="main-btn">Register</a>
             </nav>
           </header>
-          <Results />
+          {this.routingSystem()}
         </div>
         
       </div>

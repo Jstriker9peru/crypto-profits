@@ -11,21 +11,23 @@ export default class Results extends Component {
 
   render () {
     return (
-      <section id='home'>
+      <section id='results'>
         <div className="container">
-          <div className="col-md-6">
-            <img src="/img/bitcoin-logo.png" className="bitcoin-logo" />
+          <div className="col-md-12">
+            <div className="ads"></div>
           </div>
-          <div className="col-md-6">
-            <h2>Enter Transaction</h2>
-            <label>Crypto Amount</label>
-            <input type="text" name="amount"></input>
-            
-            <label>Date</label>
-            <input type="text" name="date"></input>
+          <div className="col-md-12">
+            <h3>Your $1200 dollar investment is now</h3>
+            <h1>$7300</h1>
+            <h4>You made 400% profit</h4>
+            <a href="#" className="main-btn active">
+              Create account to keep track of all your records
+            </a>
+          </div>
+          <div className="col-md-12">
+            <div className="ads"></div>
+          </div>
 
-            <button type="submit">Check Profits</button>
-          </div>
         </div>
         
       </section>
