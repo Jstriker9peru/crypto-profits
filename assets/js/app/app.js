@@ -8,15 +8,20 @@ class Layout extends Component {
     super()
     this.state = {
       name: 'Joe',
-      location: 'home'
+      location: 'home',
+      selectedDay: undefined,
     }
     this.routingSystem = this.routingSystem.bind(this);
+    this.handleDayChange = this.handleDayChange.bind(this);
+  }
+  handleDayChange(day) {
+    this.setState({ selectedDay: day });
   }
 
   routingSystem() {
     switch(this.state.location) {
       case 'home':
-        return <Home />
+        return <Home handleDayChange={this.handleDayChange} globalState={this.state} />
         break;
       case 'results':
         return <Results />

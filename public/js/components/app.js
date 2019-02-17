@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 236:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12,17 +12,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(22);
+var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(60);
+var _reactDom = __webpack_require__(70);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactDatepicker = __webpack_require__(476);
+var _reactDayPicker = __webpack_require__(473);
 
-var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+var _reactDayPicker2 = _interopRequireDefault(_reactDayPicker);
+
+var _DayPickerInput = __webpack_require__(474);
+
+var _DayPickerInput2 = _interopRequireDefault(_DayPickerInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49,6 +53,7 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'render',
     value: function render() {
+      console.log(this.props.globalState);
       return _react2.default.createElement(
         'section',
         { id: 'home' },
@@ -79,8 +84,7 @@ var Home = function (_Component) {
               null,
               'Date'
             ),
-            _react2.default.createElement('input', { type: 'text', name: 'date' }),
-            _react2.default.createElement(_reactDatepicker2.default, null),
+            _react2.default.createElement(_DayPickerInput2.default, { onDayChange: this.props.handleDayChange, selected: this.props.globalState.selectedDay }),
             _react2.default.createElement(
               'button',
               { type: 'submit' },
@@ -99,7 +103,7 @@ exports.default = Home;
 
 /***/ }),
 
-/***/ 237:
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -111,11 +115,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(22);
+var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(60);
+var _reactDom = __webpack_require__(70);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -196,7 +200,7 @@ exports.default = Results;
 
 /***/ }),
 
-/***/ 242:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -204,19 +208,19 @@ exports.default = Results;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(22);
+var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(60);
+var _reactDom = __webpack_require__(70);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Home = __webpack_require__(236);
+var _Home = __webpack_require__(239);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Results = __webpack_require__(237);
+var _Results = __webpack_require__(240);
 
 var _Results2 = _interopRequireDefault(_Results);
 
@@ -238,18 +242,25 @@ var Layout = function (_Component) {
 
     _this.state = {
       name: 'Joe',
-      location: 'home'
+      location: 'home',
+      selectedDay: undefined
     };
     _this.routingSystem = _this.routingSystem.bind(_this);
+    _this.handleDayChange = _this.handleDayChange.bind(_this);
     return _this;
   }
 
   _createClass(Layout, [{
+    key: 'handleDayChange',
+    value: function handleDayChange(day) {
+      this.setState({ selectedDay: day });
+    }
+  }, {
     key: 'routingSystem',
     value: function routingSystem() {
       switch (this.state.location) {
         case 'home':
-          return _react2.default.createElement(_Home2.default, null);
+          return _react2.default.createElement(_Home2.default, { handleDayChange: this.handleDayChange, globalState: this.state });
           break;
         case 'results':
           return _react2.default.createElement(_Results2.default, null);
@@ -300,4 +311,4 @@ _reactDom2.default.render(_react2.default.createElement(Layout, null), app);
 
 /***/ })
 
-},[242]);
+},[244]);

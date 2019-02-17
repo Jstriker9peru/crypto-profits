@@ -1,16 +1,18 @@
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
-import DatePicker from "react-datepicker";
+import DayPicker from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 export default class Home extends Component {
   constructor () {
     super()
     this.state = {
-      name: 'Joe'
-    }
+      name: 'Joe',
+    } 
   }
-
+  
   render () {
+    console.log(this.props.globalState);
     return (
       <section id='home'>
         <div className="container">
@@ -23,9 +25,8 @@ export default class Home extends Component {
             <input type="text" name="amount"></input>
             
             <label>Date</label>
-            <input type="text" name="date"></input>
-            <DatePicker />
-
+            <DayPickerInput onDayChange={this.props.handleDayChange} selected={this.props.globalState.selectedDay} />
+    
             <button type="submit">Check Profits</button>
           </div>
         </div>
