@@ -1,5 +1,7 @@
-import React, { Component} from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component} from 'react';
+import ReactDOM from 'react-dom';
+import Home from './Home.js';
+import Results from './Results.js';
 
 class Layout extends Component {
   constructor () {
@@ -22,6 +24,7 @@ class Layout extends Component {
               <a href="#">Register</a>
             </nav>
           </header>
+          <Results />
         </div>
         
       </div>
