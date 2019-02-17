@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 239:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,15 +16,15 @@ var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(70);
+var _reactDom = __webpack_require__(71);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactDayPicker = __webpack_require__(473);
+var _reactDayPicker = __webpack_require__(499);
 
 var _reactDayPicker2 = _interopRequireDefault(_reactDayPicker);
 
-var _DayPickerInput = __webpack_require__(474);
+var _DayPickerInput = __webpack_require__(500);
 
 var _DayPickerInput2 = _interopRequireDefault(_DayPickerInput);
 
@@ -53,7 +53,6 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'render',
     value: function render() {
-      console.log(this.props.globalState);
       return _react2.default.createElement(
         'section',
         { id: 'home' },
@@ -103,7 +102,7 @@ exports.default = Home;
 
 /***/ }),
 
-/***/ 240:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -119,7 +118,7 @@ var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(70);
+var _reactDom = __webpack_require__(71);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -200,7 +199,7 @@ exports.default = Results;
 
 /***/ }),
 
-/***/ 244:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -212,15 +211,19 @@ var _react = __webpack_require__(18);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(70);
+var _reactDom = __webpack_require__(71);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Home = __webpack_require__(239);
+var _axios = __webpack_require__(246);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _Home = __webpack_require__(247);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Results = __webpack_require__(240);
+var _Results = __webpack_require__(248);
 
 var _Results2 = _interopRequireDefault(_Results);
 
@@ -243,10 +246,12 @@ var Layout = function (_Component) {
     _this.state = {
       name: 'Joe',
       location: 'home',
-      selectedDay: undefined
+      selectedDay: undefined,
+      data: ''
     };
     _this.routingSystem = _this.routingSystem.bind(_this);
     _this.handleDayChange = _this.handleDayChange.bind(_this);
+    _this.apiCall = _this.apiCall.bind(_this);
     return _this;
   }
 
@@ -254,6 +259,21 @@ var Layout = function (_Component) {
     key: 'handleDayChange',
     value: function handleDayChange(day) {
       this.setState({ selectedDay: day });
+    }
+  }, {
+    key: 'apiCall',
+    value: function apiCall() {
+      var _this2 = this;
+
+      _axios2.default.get('https://min-api.cryptocompare.com/data/pricehistorical?fsym=BTC&tsyms=BTC,USD,EUR&ts=1513285669&extraParams=crypto_profits_cp').then(function (response) {
+        _this2.setState({
+          data: response.data.BTC
+        }, function () {
+          console.log(_this2.state);
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: 'routingSystem',
@@ -283,7 +303,7 @@ var Layout = function (_Component) {
             null,
             _react2.default.createElement(
               'div',
-              { className: 'logo' },
+              { className: 'logo', onClick: this.apiCall },
               'Crypto Profits'
             ),
             _react2.default.createElement(
@@ -311,4 +331,4 @@ _reactDom2.default.render(_react2.default.createElement(Layout, null), app);
 
 /***/ })
 
-},[244]);
+},[269]);

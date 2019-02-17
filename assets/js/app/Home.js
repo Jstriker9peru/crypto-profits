@@ -12,7 +12,6 @@ export default class Home extends Component {
   }
   
   render () {
-    console.log(this.props.globalState);
     return (
       <section id='home'>
         <div className="container">
